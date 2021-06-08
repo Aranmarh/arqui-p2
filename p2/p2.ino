@@ -18,8 +18,8 @@ long distancia(int trigger, int echo){
 
 
 void setup() {
-    servo.attach(2);
-   servo2.attach(4);
+    servo.attach(27);
+   servo2.attach(A0);
 
 }
 
@@ -27,15 +27,11 @@ void loop() {
 
   cm = 0.01723 * distancia(6, 6);
   cm2 = 0.01723 * distancia(29, 29);
-  if(cm<150){
-     int x = 150 - cm;
-     motorDerecho(x);
-  }
-
-  if(cm2<150){
-      int y = 150-cm2;
-      //se sube el motor izquierdo
-  }
+  int x = 150 - cm;
+  motorDerecho(x);
+  int y = 150-cm2;
+  motorIzquierdo(y);
+  delay(100);
 
 }
 
