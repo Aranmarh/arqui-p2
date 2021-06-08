@@ -1,6 +1,9 @@
+#include <Servo.h>
 int cm = 0;
 int cm2 = 0;
 int salida=27;
+
+Servo servo,servo2;
 long distancia(int trigger, int echo){
   pinMode(trigger, OUTPUT);
   digitalWrite(trigger, LOW);
@@ -15,7 +18,8 @@ long distancia(int trigger, int echo){
 
 
 void setup() {
-  // put your setup code here, to run once:
+    servo.attach(2);
+   servo2.attach(4);
 
 }
 
@@ -25,13 +29,21 @@ void loop() {
   cm2 = 0.01723 * distancia(29, 29);
   if(cm<150){
      int x = 150 - cm;
-     //se sube  el motor derecho
-    }
+     motorDerecho(x);
+  }
 
   if(cm2<150){
       int y = 150-cm2;
       //se sube el motor izquierdo
-    }
-  // put your main code here, to run repeatedly:
+  }
 
+}
+
+void motorDerecho(int dist){
+  servo.write(dist);
+}
+
+
+void motorIzquierdo(int dist){
+  servo2.write(dist);
 }
